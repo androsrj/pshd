@@ -1,5 +1,14 @@
-# Estimate the expected generalized structural Hamming distance between a given network and a set of network samples
-# Samples must be the form of either a list or a 3D array
+#' Estimate the expected PSHD loss for a network given a set of samples
+#'
+#' @param g
+#' @param samples
+#' @param a
+#' @param indivLoss
+#'
+#' @return xxxxx
+#' @export
+#'
+#' @examples
 expected_pshd <- function(g, samples, a = 1, indivLoss = FALSE) {
 
   # Loss calculations will depend on whether the samples are in list or 3D array form

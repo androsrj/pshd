@@ -1,4 +1,13 @@
-# Compute generalized structural Hamming distance between two supplied networks
+#' Penalized Structural Hamming Distance
+#'
+#' @param g1
+#' @param g2
+#' @param a
+#'
+#' @return The PSHD loss (nonnegative scalar) between the two supplied networks.
+#' @export
+#'
+#' @examples
 pshd <- function(g1, g2, a = 1) {
 
   # Compatibility checks and error messages

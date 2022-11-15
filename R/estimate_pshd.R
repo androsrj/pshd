@@ -1,5 +1,12 @@
-# Compute a network estimate given a set of samples
-# Finds the network in the samples with minimal PSHD loss
+#' Find a netwwork structure that minimizes the expected PSHD loss among a set of samples
+#'
+#' @param samples
+#' @param a
+#'
+#' @return xxxxx
+#' @export
+#'
+#' @examples
 estimate_pshd <- function(samples, a = 1) {
 
   # Computation is different depending on whether samples are supplied as a list or 3D array
