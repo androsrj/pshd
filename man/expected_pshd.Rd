@@ -4,13 +4,17 @@
 \alias{expected_pshd}
 \title{Estimate the expected PSHD loss for a network given a set of samples}
 \usage{
-expected_pshd(g, samples, a = 1, indivLoss = FALSE)
+expected_pshd(g, samples, a = 1)
 }
 \arguments{
-\item{indivLoss}{}
+\item{g}{A \eqn{p \times p} binary adjacency matrix representing the structure of a network, where \eqn{p} is the total number of nodes present.}
+
+\item{samples}{A list of length \eqn{B} or 3-dimensional array of dimensions \eqn{p \times p \times B} containing a set of \eqn{B} samples. Each sample should be a \eqn{p \times p} binary adjacency matrix representing the structure of a network.}
+
+\item{a}{The value of the penalty parameter (scalar). Must be strictly greater than 0 and less than 2.}
 }
 \value{
-xxxxx
+An estimate of the expected PSHD loss for the network g1 (nonnegative scalar), obtained by averaging the PSHD between g1 and each sample.
 }
 \description{
 Estimate the expected PSHD loss for a network given a set of samples

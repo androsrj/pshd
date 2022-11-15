@@ -2,18 +2,32 @@
 % Please edit documentation in R/pshd.R
 \name{pshd}
 \alias{pshd}
-\title{Penalized Structural Hamming Distance}
+\title{Given two supplied network structures in adjacency matrix form (\emph{g1} and \emph{g2}), this function
+computes the penalized structural Hamming distance (PSHD) between them. These matrices must be
+square and binary. If one matrix has more rows/columns than the other, then rows and columns of
+zeroes will be added to the smaller matrix in order to coerce compatible dimensions. In addition,
+users can specify a penalty parameter \eqn{a}, which defaults to 1 but can be any value strictly
+between 0 and 2. The other penalty parameter \eqn{b} will be automatically computed as \eqn{b=2-a}.
+Tuning the value of \eqn{a} triggers the differential penalty case of structural Hamming distance.}
 \usage{
 pshd(g1, g2, a = 1)
 }
 \arguments{
-\item{g1}{A \eqn{p \times p} matrix}
+\item{g1}{A \eqn{p \times p} binary adjacency matrix representing the structure of a network, where \eqn{p} is the total number of nodes present.}
 
-\item{a}{}
+\item{g2}{A \eqn{p \times p} binary adjacency matrix representing the structure of a network, where \eqn{p} is the total number of nodes present.}
+
+\item{a}{The value of the penalty parameter (scalar). Must be strictly greater than 0 and less than 2.}
 }
 \value{
 The PSHD loss (nonnegative scalar) between the two supplied networks.
 }
 \description{
-Penalized Structural Hamming Distance
+Given two supplied network structures in adjacency matrix form (\emph{g1} and \emph{g2}), this function
+computes the penalized structural Hamming distance (PSHD) between them. These matrices must be
+square and binary. If one matrix has more rows/columns than the other, then rows and columns of
+zeroes will be added to the smaller matrix in order to coerce compatible dimensions. In addition,
+users can specify a penalty parameter \eqn{a}, which defaults to 1 but can be any value strictly
+between 0 and 2. The other penalty parameter \eqn{b} will be automatically computed as \eqn{b=2-a}.
+Tuning the value of \eqn{a} triggers the differential penalty case of structural Hamming distance.
 }
