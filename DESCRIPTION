@@ -4,12 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Jacob", "Andros", , "androsrj@tamu.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1289-385X"))
-Description: Penalized structural Hamming distance (PSHD) is an extension of the more traditional 
-structural Hamming distance which quanitifes the distance between DAG structures in their adjacency 
-matrix form. PSHD allows the user to incorporate different penalty parameters when summing the edge 
-disagreements. For instance, a penalty higher than 1 could be assigned when network A contains an 
-edge which network B does not, and a penalty of less than 1 could be assigned when network B 
-contains an edge not contained in network A.
+Description: Penalized structural Hamming distance (PSHD) is an extension of the more traditional structural Hamming distance which quanitifes the distance between DAG structures in their adjacency matrix form. PSHD allows the user to incorporate different penalty parameters when summing the edge disagreements. For instance, a penalty higher than 1 could be assigned when network A contains an edge which network B does not, and a penalty of less than 1 could be assigned when network B contains an edge not contained in network A.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

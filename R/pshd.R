@@ -1,8 +1,14 @@
-#' Penalized Structural Hamming Distance
+#' Given two supplied network structures in adjacency matrix form (*g1* and *g2*), this function
+#' computes the penalized structural Hamming distance (PSHD) between them. These matrices must be
+#' square and binary. If one matrix has more rows/columns than the other, then rows and columns of
+#' zeroes will be added to the smaller matrix in order to coerce compatible dimensions. In addition,
+#' users can specify a penalty parameter \eqn{a}, which defaults to 1 but can be any value strictly
+#' between 0 and 2. The other penalty parameter \eqn{b} will be automatically computed as \eqn{b=2-a}.
+#' Tuning the value of \eqn{a} triggers the differential penalty case of structural Hamming distance.
 #'
-#' @param g1
-#' @param g2
-#' @param a
+#' @param g1 A \eqn{p \times p} binary matrix (i.e. all entries are 0 or 1).
+#' @param g2 A \eqn{p \times p} binary matrix (i.e. all entries are 0 or 1).
+#' @param a The value of the penalty parameter (scalar). Must be strictly greater than 0 and less than 2.
 #'
 #' @return The PSHD loss (nonnegative scalar) between the two supplied networks.
 #' @export
