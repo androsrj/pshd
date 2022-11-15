@@ -1,15 +1,14 @@
 #' Estimate the expected PSHD loss for a network given a set of samples
 #'
-#' @param g
-#' @param samples
-#' @param a
-#' @param indivLoss
+#' @param g A \eqn{p \times p} binary adjacency matrix representing the structure of a network, where \eqn{p} is the total number of nodes present.
+#' @param samples A list of length \eqn{B} or 3-dimensional array of dimensions \eqn{p \times p \times B} containing a set of \eqn{B} samples. Each sample should be a \eqn{p \times p} binary adjacency matrix representing the structure of a network.
+#' @param a The value of the penalty parameter (scalar). Must be strictly greater than 0 and less than 2.
 #'
-#' @return xxxxx
+#' @return An estimate of the expected PSHD loss for the network g1 (nonnegative scalar), obtained by averaging the PSHD between g1 and each sample.
 #' @export
 #'
 #' @examples
-expected_pshd <- function(g, samples, a = 1, indivLoss = FALSE) {
+expected_pshd <- function(g, samples, a = 1) {
 
   # Loss calculations will depend on whether the samples are in list or 3D array form
   if (is.list(samples)) {
@@ -33,11 +32,5 @@ expected_pshd <- function(g, samples, a = 1, indivLoss = FALSE) {
   # Average the individual losses to get expected loss estimate
   expLoss <- mean(losses)
 
-  # If indivLoss==FALSE, returns the expected loss as a scalar
-  # Otherwise, return both the expected loss (scalar) and individual losses
-  if (indivLoss == FALSE) {
-    return(expLoss)
-  } else {
-    return(list(expLoss = expLoss, indivLosses = losses))
-  }
+  return(expLoss)
 }
