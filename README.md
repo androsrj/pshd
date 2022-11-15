@@ -14,3 +14,8 @@ The *pshd* function is a simple function which calculates the penalized structur
 
 ## Remainder of work for project
 
+
+## Other
+
+When I originally proposed this idea for my project, I called it GSHD for Generalized Structural Hamming Distance. I changed it to PSHD (penalized instead of generalized) because I found a paper that defines GSHD as something slightly different.
+
