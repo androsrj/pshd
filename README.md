@@ -13,7 +13,7 @@ To install the *pshd* package, simply type *install.packages("pshd")* into the R
 
 ## Remainder of work for project
 
-I believe that my 3 functions are mostly complete and running as intended. All that is left for me to do is to finish all necessary compatibility checks within each function, and to set up a series of extensive formal tests to ensure correctness. I also need to write up examples for each function that can be visible in the documentation.
+I believe that my 3 functions are mostly complete and running as intended. All that is left for me to do is to finish all necessary compatibility checks within each function, and to set up a series of extensive formal tests to ensure correctness. I also need to write up a vignette, and create examples for each function that can be visible in the documentation.
 
 ## Other
 
