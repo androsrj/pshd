@@ -12,7 +12,9 @@ estimate_pshd(samples, a = 1)
 \item{a}{The value of the penalty parameter (scalar). Must be strictly greater than 0 and less than 2. Higher values (closer to 2) tend to return a more sparse final estimate with fewer edges, and vice versa for values closer to 0.}
 }
 \value{
-A list containing two elements: The sample with minimal average PSHD loss to the rest of the samples, which is a binary \eqn{p \times p} adjacency matrix, and the value of that minimal expected loss.
+A list containing two elements:
+\item{estimate}{The sample with minimal average PSHD loss to the rest of the samples, which is a binary \eqn{p \times p} adjacency matrix.}
+\item{expLoss}{The value of that minimal expected loss.}
 }
 \description{
 Find a netwwork structure that minimizes the expected PSHD loss among a set of samples
