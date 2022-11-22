@@ -2,13 +2,7 @@
 % Please edit documentation in R/pshd.R
 \name{pshd}
 \alias{pshd}
-\title{Given two supplied network structures in adjacency matrix form (\emph{g1} and \emph{g2}), this function
-computes the penalized structural Hamming distance (PSHD) between them. These matrices must be
-square and binary. If one matrix has more rows/columns than the other, then rows and columns of
-zeroes will be added to the smaller matrix in order to coerce compatible dimensions. In addition,
-users can specify a penalty parameter \eqn{a}, which defaults to 1 but can be any value strictly
-between 0 and 2. The other penalty parameter \eqn{b} will be automatically computed as \eqn{b=2-a}.
-Tuning the value of \eqn{a} triggers the differential penalty case of structural Hamming distance.}
+\title{Compute PSHD loss between two networks structures}
 \usage{
 pshd(g1, g2, a = 1)
 }

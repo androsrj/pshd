@@ -3,7 +3,9 @@
 #' @param samples A list of length \eqn{B} or 3-dimensional array of dimensions \eqn{p \times p \times B} containing a set of \eqn{B} samples. Each sample should be a \eqn{p \times p} binary adjacency matrix representing the structure of a network.
 #' @param a The value of the penalty parameter (scalar). Must be strictly greater than 0 and less than 2. Higher values (closer to 2) tend to return a more sparse final estimate with fewer edges, and vice versa for values closer to 0.
 #'
-#' @return A list containing two elements: The sample with minimal average PSHD loss to the rest of the samples, which is a binary \eqn{p \times p} adjacency matrix, and the value of that minimal expected loss.
+#' @return A list containing two elements:
+#'   \item{estimate}{The sample with minimal average PSHD loss to the rest of the samples, which is a binary \eqn{p \times p} adjacency matrix.}
+#'   \item{expLoss}{The value of that minimal expected loss.}
 #' @export
 #'
 #' @examples
