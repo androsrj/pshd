@@ -1,4 +1,6 @@
-#' Given two supplied network structures in adjacency matrix form (*g1* and *g2*), this function
+#' Compute PSHD loss between two networks structures
+#'
+#' @description Given two supplied network structures in adjacency matrix form (*g1* and *g2*), this function
 #' computes the penalized structural Hamming distance (PSHD) between them. These matrices must be
 #' square and binary. If one matrix has more rows/columns than the other, then rows and columns of
 #' zeroes will be added to the smaller matrix in order to coerce compatible dimensions. In addition,
