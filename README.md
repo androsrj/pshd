@@ -9,7 +9,7 @@ Recall that the penalized structural Hamming distance is an extension which allo
 
 ## Installation instructions
 
-To install the *pshd* package, simply type *install.packages("pshd")* into the R console. It does not rely on any other R packages or external software. Then, use *library(pshd)* to have easy access to all 3 functions.
+To install the *pshd* package, use the *install_github* function from the *devtools* library. Type *install_github("https://github.com/androsrj/pshd")* into the R console. It does not rely on any other R packages or external software. Then, use *library(pshd)* to have easy access to all 3 functions.
 
 ## Remainder of work for project
 
