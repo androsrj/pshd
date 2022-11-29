@@ -26,7 +26,7 @@ estimate_pshd <- function(samples, a = 1) {
       # Reflect lower triangular elements to create symmetric distance matrix
       distance_mat[upper.tri(distance_mat)] <- t(distance_mat)[upper.tri(distance_mat)]
       # Compute expected PSHD for each network
-      distance_vec <- apply(distance_mat, 1, mean)
+      distance_vec <- rowMeans(distance_mat)
     } else {
       distance_vec <- sapply(samples, function(x) {
         expected_pshd(x, samples, a = a)
@@ -56,7 +56,7 @@ estimate_pshd <- function(samples, a = 1) {
       # Reflect lower triangular elements to create symmetric distance matrix
       distance_mat[upper.tri(distance_mat)] <- t(distance_mat)[upper.tri(distance_mat)]
       # Compute expected PSHD for each network
-      distance_vec <- apply(distance_mat, 1, mean)
+      distance_vec <- rowMeans(distance_mat)
     } else {
       distance_vec <- apply(samples, 3, function(x) {
         expected_pshd(x, samples, a = a)
