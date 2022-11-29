@@ -23,7 +23,7 @@ pshd <- function(g1, g2, a = 1) {
     stop("Penalty parameter a must be numeric and in the open interval (0, 2).")
   }
   if (!is.numeric(c(g1, g2))) {
-    stop("Networks must be numeric.")
+    stop("Networks must be numeric, binary square adjacency matrices.")
   }
   if (!is.matrix(g1) | !is.matrix(g2)) {
     stop("Networks must be in adjacency matrix form.")
@@ -33,6 +33,9 @@ pshd <- function(g1, g2, a = 1) {
   }
   if (!all(unique(c(g1, g2)) %in% c(0,1) )) {
     stop("Each supplied network must consist only of 0's and 1's.")
+  }
+  if (!all(diag(g1) == 0) | !all(diag(g2) == 0)) {
+    stop("Diagonal elements of each adjacency matrix should be zero; otherwise the graph is not acyclic.")
   }
 
   # Warnings
