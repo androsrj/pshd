@@ -20,7 +20,7 @@ estimate_pshd <- function(samples, a = 1) {
     if (a == 1) {
       for (i in 1:nSamples) {
         for (j in 1:i) {
-          distance_mat[i, j] <- pshd(nSamples[[i]], nSamples[[j]], a = a)
+          distance_mat[i, j] <- pshd(samples[[i]], samples[[j]], a = a)
         }
       }
       # Reflect lower triangular elements to create symmetric distance matrix
