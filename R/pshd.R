@@ -45,12 +45,16 @@ pshd <- function(g1, g2, a = 1) {
     diff <- ncol(g1) - ncol(g2)
     add <- matrix(0, nrow = nrow(g2), ncol = diff)
     g2 <- cbind(g2, add)
+    add <- matrix(0, nrow = diff, ncol = ncol(g2))
+    g2 <- rbind(g2, add)
   } else if (ncol(g1) < ncol(g2)) {
     warning("Second network has more nodes than first network.
             Augmenting the first network with rows and columns of 0's. ")
     diff <- ncol(g2) - ncol(g1)
     add <- matrix(0, nrow = nrow(g1), ncol = diff)
     g1 <- cbind(g1, add)
+    add <- matrix(0, nrow = diff, ncol = ncol(g1))
+    g1 <- rbind(g1, add)
   }
 
   # Get the other penalty parameter using a
