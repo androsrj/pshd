@@ -1,5 +1,5 @@
 ---
-title: "PSHD_Vignette"
+title: "PSHD: Penalized Structural Hamming Distance for Comparing DAG Structures"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{PSHD_Vignette}
@@ -14,6 +14,19 @@ knitr::opts_chunk$set(
 )
 ```
 
+Recall that the penalized structural Hamming distance is an extension which allows the user to incorporate different penalty parameters when summing the edge disagreements between two network structures (Tsamardinos, 2006). For instance, a penalty higher than 1 could be assigned when network A contains an edge which network B does not, and a penalty of less than 1 could be assigned when network B contains an edge not contained in network A. The *pshd* function is a simple function which calculates the penalized structural Hamming distance (or PSHD loss) between two supplied network structures in adjacency matrix form. The *expected_pshd* function takes this a step further, calculating the PSHD loss between a supplied network and each network in a set of samples, averaging each loss to get an estimate of the expected PSHD loss. Lastly, the *estimate_pshd* function iterates through a set of adjacency matrix samples to find the sample with minimal expected PSHD loss. In all three of these functions, the penalty parameter $a$ can be specified by the user as any value strictly between 0 and 2, but it defaults to 1 otherwise. Note that the functions do not take $b$ as an argument, because $b$ will be automatically taken as $b=2-a$ for the specified value of $a$.
+
+
+# Setup and Installation
 ```{r setup}
 library(pshd)
 ```
+
+
+# Getting Started
+
+
+
+# Other Notes
+
+
