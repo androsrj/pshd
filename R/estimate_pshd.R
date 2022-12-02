@@ -9,6 +9,14 @@
 #' @export
 #'
 #' @examples
+#' nSamples <- 25
+#' p <- 4
+#' g <- 1 - diag(p)
+#' samples <- replicate(nSamples, g, simplify = FALSE)
+#' estimate_pshd(samples)
+#' estimate_pshd(samples, a = 0.1)
+#' estimate_pshd(samples, a = 1.9)
+
 estimate_pshd <- function(samples, a = 1) {
 
   # Computation is different depending on whether samples are supplied as a list or 3D array

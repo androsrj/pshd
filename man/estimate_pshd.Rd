@@ -19,3 +19,12 @@ A list containing two elements:
 \description{
 Find a netwwork structure that minimizes the expected PSHD loss among a set of samples
 }
+\examples{
+nSamples <- 25
+p <- 4
+g <- 1 - diag(p)
+samples <- replicate(nSamples, g, simplify = FALSE)
+estimate_pshd(samples)
+estimate_pshd(samples, a = 0.1)
+estimate_pshd(samples, a = 1.9)
+}
