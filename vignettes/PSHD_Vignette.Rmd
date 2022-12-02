@@ -93,6 +93,16 @@ Because of this, using $a \neq 1$ is not particularly insightful when computing 
 estimate_pshd(samples, a = 0.25)$est
 estimate_pshd(samples, a = 1.75)$est
 ```
-It is easy to see that the estimate from $a=0.25$ has far more edges present than the estimate with $a=1.75$. Thus, the adjustment of penalty values grants the user a built-in approach to obtain a desired density or sparsity in the final estimate.
+It is easy to see that the estimate from $a=0.25$ has far more edges present than the estimate with $a=1.75$. Thus, the adjustment of penalty values grants the user a built-in approach to obtain a desired density or sparsity in the final estimate. The plot below shows the total number of edges in the final estimate as a function of $a$ for this particular set of samples, using $a \in (0.5, 1.5)$:
+
+```{r, echo=FALSE}
+a_seq <- seq(0.5, 1.5, by = 0.1)
+total_edges <- sapply(a_seq, function(x) {
+  est <- estimate_pshd(samples, a = x)$est
+  sum(est)
+})
+plot(a_seq, total_edges, type = 'b', xlab = "Penalty (a)", ylab = "Total Edges in Final Estimate")
+```
+
 
 # References
