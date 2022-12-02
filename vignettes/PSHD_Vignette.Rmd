@@ -28,8 +28,7 @@ The added flexibility in the penalty values allows for sparsity tuning when choo
 
 The PSHD package is not yet on CRAN, but it is available on a public GitHub repository and can therefore be installed using the *devtools* library as follows:
 ```{r setup}
-library(devtools)
-install_github("https://github.com/androsrj/pshd")
+devtools::install_github("https://github.com/androsrj/pshd")
 library(pshd)
 ```
 
