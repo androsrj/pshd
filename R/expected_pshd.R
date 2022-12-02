@@ -8,6 +8,14 @@
 #' @export
 #'
 #' @examples
+#' nSamples <- 100
+#' p <- 5
+#' g <- matrix(sample(c(0, 1), p^2, replace = TRUE), nrow = p, ncol = p)
+#' diag(g) <- 0
+#' samples <- array(sample(c(0, 1), nSamples * p^2, replace = TRUE), dim = c(p, p, nSamples))
+#' samples <- apply(c(1, 2), \(x) diag(x) <- 0)
+#'
+
 expected_pshd <- function(g, samples, a = 1) {
 
   # Loss calculations will depend on whether the samples are in list or 3D array form

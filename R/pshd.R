@@ -16,6 +16,14 @@
 #' @export
 #'
 #' @examples
+#' p <- 4
+#' g1 <- matrix(sample(c(0, 1), p^2, replace = TRUE), nrow = p, ncol = p)
+#' g2 <- matrix(sample(c(0, 1), p^2, replace = TRUE), nrow = p, ncol = p)
+#' diag(g1) <- 0
+#' diag(g2) <- 0
+#' pshd(g1, g2)
+#' pshd(g1, g2, a = 1.5)
+
 pshd <- function(g1, g2, a = 1) {
 
   # Compatibility checks and error messages
@@ -49,7 +57,7 @@ pshd <- function(g1, g2, a = 1) {
     g2 <- rbind(g2, add)
   } else if (ncol(g1) < ncol(g2)) {
     warning("Second network has more nodes than first network.
-            Augmenting the first network with rows and columns of 0's. ")
+            Augmenting the first network with rows and columns of 0's.")
     diff <- ncol(g2) - ncol(g1)
     add <- matrix(0, nrow = nrow(g1), ncol = diff)
     g1 <- cbind(g1, add)

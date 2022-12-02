@@ -25,3 +25,11 @@ users can specify a penalty parameter \eqn{a}, which defaults to 1 but can be an
 between 0 and 2. The other penalty parameter \eqn{b} will be automatically computed as \eqn{b=2-a}.
 Tuning the value of \eqn{a} triggers the differential penalty case of structural Hamming distance.
 }
+\examples{
+g1 <- matrix(sample(c(0,1), 16, replace = TRUE), nrow = 4, ncol = 4)
+g2 <- matrix(sample(c(0,1), 16, replace = TRUE), nrow = 4, ncol = 4)
+diag(g1) <- 0
+diag(g2) <- 0
+pshd(g1, g2)
+pshd(g1, g2, a = 1.5)
+}
