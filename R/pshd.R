@@ -35,7 +35,7 @@ pshd <- function(g1, g2, a = 1) {
 
   # Compatibility checks and error messages
   if (!is.numeric(a) | a <= 0 | a >= 2) {
-    stop("Penalty parameter a must be numeric and in the open interval (0, 2).")
+    stop("Penalty parameter a must be numeric, strictly greater than zero, and strictly less than two.")
   }
   if (!is.numeric(c(g1, g2))) {
     stop("Networks must be numeric, binary square adjacency matrices.")
@@ -56,7 +56,7 @@ pshd <- function(g1, g2, a = 1) {
   # Warnings
   if (ncol(g1) > ncol(g2)) {
     warning("First network has more nodes than second network.
-            Augmenting the second network with rows and columns of 0's. ")
+            Augmenting the second network with rows and columns of 0's.")
     diff <- ncol(g1) - ncol(g2)
     add <- matrix(0, nrow = nrow(g2), ncol = diff)
     g2 <- cbind(g2, add)
