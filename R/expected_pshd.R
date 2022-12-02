@@ -8,8 +8,8 @@
 #' @export
 #'
 #' @examples
-#' nSamples <- 100
-#' p <- 5
+#' nSamples <- 25
+#' p <- 4
 #' g <- 1 - diag(p)
 #' samples <- replicate(nSamples, g, simplify = FALSE)
 #' expected_pshd(g, samples)

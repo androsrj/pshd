@@ -19,3 +19,11 @@ An estimate of the expected PSHD loss for the network g1 (nonnegative scalar), o
 \description{
 Estimate the expected PSHD loss for a network given a set of samples
 }
+\examples{
+nSamples <- 25
+p <- 4
+g <- 1 - diag(p)
+samples <- replicate(nSamples, g, simplify = FALSE)
+expected_pshd(g, samples)
+expected_pshd(g, samples, a = 1.5)
+}

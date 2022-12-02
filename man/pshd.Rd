@@ -24,10 +24,18 @@ zeroes will be added to the smaller matrix in order to coerce compatible dimensi
 users can specify a penalty parameter \eqn{a}, which defaults to 1 but can be any value strictly
 between 0 and 2. The other penalty parameter \eqn{b} will be automatically computed as \eqn{b=2-a}.
 Tuning the value of \eqn{a} triggers the differential penalty case of structural Hamming distance.
+
+#' @references
+Tsamardinos, Ioannis and Brown, Laura E. and Aliferis, Constantin F. (2006)
+The max-min hill-climbing Bayesian network structure learning algorithm
+\emph{Machine Learning}
+\strong{65} 31-78,
+\doi{10.1007/s10994-006-6889-7}.
 }
 \examples{
-g1 <- matrix(sample(c(0,1), 16, replace = TRUE), nrow = 4, ncol = 4)
-g2 <- matrix(sample(c(0,1), 16, replace = TRUE), nrow = 4, ncol = 4)
+p <- 4
+g1 <- matrix(sample(c(0, 1), p^2, replace = TRUE), nrow = p, ncol = p)
+g2 <- matrix(sample(c(0, 1), p^2, replace = TRUE), nrow = p, ncol = p)
 diag(g1) <- 0
 diag(g2) <- 0
 pshd(g1, g2)
