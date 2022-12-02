@@ -1,6 +1,7 @@
 ---
 title: "PSHD: Penalized Structural Hamming Distance for Comparing DAG Structures"
 output: rmarkdown::html_vignette
+bibliography: references.bib
 vignette: >
   %\VignetteIndexEntry{PSHD_Vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,19 +15,34 @@ knitr::opts_chunk$set(
 )
 ```
 
-Recall that the penalized structural Hamming distance is an extension which allows the user to incorporate different penalty parameters when summing the edge disagreements between two network structures (Tsamardinos, 2006). For instance, a penalty higher than 1 could be assigned when network A contains an edge which network B does not, and a penalty of less than 1 could be assigned when network B contains an edge not contained in network A. The *pshd* function is a simple function which calculates the penalized structural Hamming distance (or PSHD loss) between two supplied network structures in adjacency matrix form. The *expected_pshd* function takes this a step further, calculating the PSHD loss between a supplied network and each network in a set of samples, averaging each loss to get an estimate of the expected PSHD loss. Lastly, the *estimate_pshd* function iterates through a set of adjacency matrix samples to find the sample with minimal expected PSHD loss. In all three of these functions, the penalty parameter $a$ can be specified by the user as any value strictly between 0 and 2, but it defaults to 1 otherwise. Note that the functions do not take $b$ as an argument, because $b$ will be automatically taken as $b=2-a$ for the specified value of $a$.
+# Motivation
+
+We propose the penalized structural Hamming distance function. This is an extension of the more traditional structural Hamming Distance, which was originally proposed by @tsamardinos2006max. Our penalized version, which we abbreviate as PSHD, allows users to incorporate two different penalty parameters when summing the edge disagreements between two network structures. 
+
+We denote these two penalties as $a$ and $b$, where $a$ is the penalty for the first graph containing an edge which the second graph does not, and $b$ is the penalty for the second graph containing an edge which the first graph does not. In the event that the two graphs have reversed edges between a particular pair of nodes, the penalty is $a+b$. In traditional structural Hamming distance, these penalties are (somewhat implicitly) understood to be $a=b=1$. In PSHD, $a$ and $b$ can take on any real values in the open interval $(0,2)$ as long as the constraint $a+b=2$ is satisfied. Because of the constraint $a+b=2$, the user need only specify a value for $a$ in the package, and $b$ is automatically taken as $2-a$.
+
+The added flexibility in the penalty values allows for sparsity tuning when choosing a point estimate for a DAG structure. As $a \longrightarrow 2$, the expected PSHD loss calculation assigns lower loss to graphs with fewer edges (i.e., more sparse structures). Conversely, as $a \longrightarrow 0$, it assigns lower loss to graphs with more edges (i.e., more dense structures). This is further demonstrated below.
 
 
 # Setup and Installation
+
+The PSHD package is not yet on CRAN, but it is available on a public GitHub repository and can therefore be installed using the *devtools* library as follows:
 ```{r setup}
+library(devtools)
+install_github("https://github.com/androsrj/pshd")
 library(pshd)
 ```
 
 
 # Getting Started
 
+All functions in this package assume that the graph structure(s) being supplied are in adjacency matrix form. This means a graph structure is represented by a binary, square $p \times p$ matrix, where $p$ is the number of total nodes. The $i,j$ entry of the matrix is 1 if there exists a directed edge from node $i$ to node $j$, and is 0 otherwise. The diagonal elements of the adjacency matrix must all be 0, because a node cannot have an edge that directs to itself (since the graphs are assumed to be acyclic).
+
+The package includes three functions in total. The *pshd* function is a simple function which calculates the penalized structural Hamming distance (or PSHD loss) between two supplied network structures in adjacency matrix form. The *expected_pshd* function takes this a step further, calculating the PSHD loss between a supplied network and each network in a set of samples, averaging each loss to get an estimate of the expected PSHD loss. Lastly, the *estimate_pshd* function iterates through a set of adjacency matrix samples to find the sample with minimal expected PSHD loss. In all three of these functions, the penalty parameter $a$ can be specified by the user as any value strictly between 0 and 2, but it defaults to 1 otherwise. Note that the functions do not take $b$ as an argument, because $b$ will be automatically taken as $b=2-a$ for the specified value of $a$.
 
 
-# Other Notes
+# Examples
 
 
+
+# References
