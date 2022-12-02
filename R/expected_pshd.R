@@ -19,7 +19,6 @@ expected_pshd <- function(g, samples, a = 1) {
 
   # Loss calculations will depend on whether the samples are in list or 3D array form
   if (is.list(samples)) {
-    #nSamples <- length(samples)
     losses <- sapply(samples, function(x) {
       pshd(g, x, a = a)
     })
@@ -28,7 +27,6 @@ expected_pshd <- function(g, samples, a = 1) {
     if (length(dim(samples)) != 3) {
       stop("Samples must be provided in the form of a list or 3D array.")
     }
-    #nSamples <- dim(samples)[3]
     losses <- apply(samples, 3, function(x) {
       pshd(g, x, a = a)
     })
