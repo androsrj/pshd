@@ -3,7 +3,7 @@ title: "PSHD: Penalized Structural Hamming Distance for Comparing DAG Structures
 output: rmarkdown::html_vignette
 bibliography: references.bib
 vignette: >
-  %\VignetteIndexEntry{PSHD_Vignette}
+  %\VignetteIndexEntry{PSHD: Penalized Structural Hamming Distance for Comparing DAG Structures}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,7 +21,7 @@ We propose the penalized structural Hamming distance function. This is an extens
 
 We denote these two penalties as $a$ and $b$, where $a$ is the penalty for the first graph containing an edge which the second graph does not, and $b$ is the penalty for the second graph containing an edge which the first graph does not. In the event that the two graphs have reversed edges between a particular pair of nodes, the penalty is $a+b$. In traditional structural Hamming distance, these penalties are (somewhat implicitly) understood to be $a=b=1$. In PSHD, $a$ and $b$ can take on any real values in the open interval $(0,2)$ as long as the constraint $a+b=2$ is satisfied. Because of the constraint $a+b=2$, the user need only specify a value for $a$ in the package, and $b$ is automatically taken as $2-a$.
 
-The added flexibility in the penalty values allows for sparsity tuning when choosing a point estimate for a DAG structure. As $a \longrightarrow 2$, the expected PSHD loss calculation assigns lower loss to graphs with fewer edges (i.e., more sparse structures). Conversely, as $a \longrightarrow 0$, it assigns lower loss to graphs with more edges (i.e., more dense structures). This is further demonstrated below.
+The added flexibility in the penalty values allows for sparsity tuning when choosing a point estimate for a DAG structure. As $a \longrightarrow 2$, the expected PSHD loss calculation assigns lower loss to graphs with fewer edges (i.e., biased towards more sparse structures). Conversely, as $a \longrightarrow 0$, it assigns lower loss to graphs with more edges (i.e., biased towards more dense structures). This is further demonstrated below.
 
 
 # Setup and Installation
@@ -43,6 +43,56 @@ The package includes three functions in total. The *pshd* function is a simple f
 
 # Examples
 
+To demonstrate all three functions in the package, a set of sample DAG structures (in adjacency matrix form) will be needed. A very simplistic way to generate these samples is as follows, using $p=4$ nodes and $B=100$ samples:
 
+```{r}
+p <- 4
+nSamples <- 100
+set.seed(999)
+edges <- sample(c(0, 1), nSamples * p^2, replace = TRUE)
+myArr <- array(edges, dim = c(p, p, nSamples))
+samples <- apply(myArr, 3, function(x) {
+  diag(x) <- 0
+  return(x)
+}, simplify = FALSE)
+```
+
+The object *samples* is now a list of length 100, where each element of the list is a $4 \times 4$ adjacency matrix with all zeroes on the diagonal. Let's take a look at the first two samples: 
+
+```{r}
+samples[[1]]
+samples[[2]]
+```
+Looking closely at the two matrices above, we can see that they differ at a total of 3 entries. This means that if we use $a=1$ as the penalty, the PSHD between the two matrices should be 3:
+
+```{r}
+pshd(samples[[1]], samples[[2]])
+```
+However, what if $a=0.5$? Then we would add 0.5 for each entry where the first matrix contains a 1 and the second contains a 0, but 1.5 for the opposite. Again looking at the matrices above, we can see that this should be $0.5 + 1.5 + 0.5 = 2.5$. To verify:
+
+```{r}
+pshd(samples[[1]], samples[[2]], a = 0.5)
+```
+The *expected_pshd* function builds on the *pshd* function by calculating the PSHD between a specified graph structure and all other sampled graphs, then averaging across all losses to estimate the expected loss. 
+
+```{r}
+expected_pshd(samples[[1]], samples)
+```
+Users must be cautious as to how the samples are stored in *R*. This package can handle samples formatted as a list or a 3-dimensional array. If formatted as a list, as they are in this example, the list must be of length $B$ where $B$ is the number of samples (or 100 in this case). Each element of the list should be a $p \times p$ binary adjacency matrix, with only zeroes on the diagonals. If stored as a 3-dimensional array, the array should be of dimensions $p \times p \times B$. That is, the third dimension of the array traverse the actual samples, while the first two dimensions represent the entries of each adjacency matrix.
+
+In addition, it is worth noting that PSHD is not a symmetric loss function, because it depends on the order in which the matrices are passed in. For example:
+
+```{r}
+pshd(samples[[3]], samples[[4]], a = 0.5)
+pshd(samples[[4]], samples[[3]], a = 0.5)
+```
+
+Because of this, using $a \neq 1$ is not particularly insightful when computing the loss between just two matrices. However, the penalty flexibility is extremely useful when generating an estimate from the *estimate_pshd* function. Let's calculate a loss-minimizing estimate from the samples using $a=0.25$ and $a=1.75$ and observe how each one differs:
+
+```{r}
+estimate_pshd(samples, a = 0.25)$est
+estimate_pshd(samples, a = 1.75)$est
+```
+It is easy to see that the estimate from $a=0.25$ has far more edges present than the estimate with $a=1.75$. Thus, the adjustment of penalty values grants the user a built-in approach to obtain a desired density or sparsity in the final estimate.
 
 # References
