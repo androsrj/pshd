@@ -35,10 +35,21 @@ test_that("PSHD loss is computed correctly, 5 nodes", {
 test_that("PSHD loss is computed correctly, mismatching node counts", {
   expect_warning(pshd(graph1, graph4, a = 1), "Second network has more nodes than first network.
             Augmenting the first network with rows and columns of 0's.")
-  expect_warning(pshd(graph1, graph4, a = 0.1), "Second network has more nodes than first network.
-            Augmenting the first network with rows and columns of 0's.")
-  expect_warning(pshd(graph1, graph4, a = 1.1), "Second network has more nodes than first network.
-            Augmenting the first network with rows and columns of 0's.")
+  expect_warning(pshd(graph4, graph1, a = 0.1), "First network has more nodes than second network.
+            Augmenting the second network with rows and columns of 0's.")
 })
 
+# Make sure correct errors are returned for incompatible inputs
+graphNonBinary <- graph3
+graphNonBinary[1, 2] <- 99
+graphWithDiagonal <- graph4
+graphWithDiagonal[1, 1] <- 1
+test_that("Compatibility checks and error messages", {
+  expect_error(pshd(graph1, graph2, a = 3), "Penalty parameter a must be numeric, strictly greater than zero, and strictly less than two.")
+  expect_error(pshd(graph1, "hello"), "Networks must be numeric, binary square adjacency matrices.")
+  expect_error(pshd(graph1, c(0,1,0,1)), "Networks must be in adjacency matrix form.")
+  expect_error(pshd(graph1, rbind(graph1, graph2)), "Adjacency matrix of each network must be square.")
+  expect_error(pshd(graphNonBinary, graph3), "Each supplied network must consist only of 0's and 1's.")
+  expect_error(pshd(graphWithDiagonal, graph4), "Diagonal elements of each adjacency matrix should be zero; otherwise the graph is not acyclic.")
+})
 
