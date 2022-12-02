@@ -38,3 +38,11 @@ test_that("Expected PSHD loss is computed correctly, 4 nodes with 3 samples in 3
   expect_equal(expected_pshd(mainGraph, samplesArr, a = 0.3), (3.7/3))
   expect_equal(expected_pshd(mainGraph, samplesArr, a = 1.75), 0.75)
 })
+
+# Make sure errors are returned for incompatible input
+test_that("Compatibility checks and error messages", {
+  expect_error(expected_pshd(mainGraph, samplesArr[ , , 1]),
+               "Samples must be provided in the form of a list or 3D array.")
+  expect_error(expected_pshd(mainGraph, "hello"),
+               "Samples must be provided in the form of a list or 3D array.")
+})
