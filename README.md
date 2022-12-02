@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/androsrj/pshd/branch/master/graph/badge.svg?token=MJWWLB4PU4)](https://codecov.io/gh/androsrj/pshd)
+[![codecov](https://codecov.io/gh/androsrj/pshd/branch/master/graph/badge.svg?token=MJWWLB4PU4)](https://codecov.io/gh/androsrj/pshd) \
 Penalized Structural Hamming Distance Package
 ==========================
 
