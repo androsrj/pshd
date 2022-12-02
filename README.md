@@ -19,3 +19,4 @@ I believe that my 3 functions are mostly complete and running as intended. All t
 
 When I originally proposed this idea for my project, I called it GSHD for Generalized Structural Hamming Distance. I changed it to PSHD (penalized instead of generalized) because I found a paper that defines GSHD as something slightly different.
 
+[![codecov](https://codecov.io/gh/androsrj/pshd/branch/master/graph/badge.svg?token=MJWWLB4PU4)](https://codecov.io/gh/androsrj/pshd)
