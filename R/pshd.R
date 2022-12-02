@@ -8,6 +8,13 @@
 #' between 0 and 2. The other penalty parameter \eqn{b} will be automatically computed as \eqn{b=2-a}.
 #' Tuning the value of \eqn{a} triggers the differential penalty case of structural Hamming distance.
 #'
+#' #' @references
+#' Tsamardinos, Ioannis and Brown, Laura E. and Aliferis, Constantin F. (2006)
+#' The max-min hill-climbing Bayesian network structure learning algorithm
+#' \emph{Machine Learning}
+#' \strong{65} 31-78,
+#' \doi{10.1007/s10994-006-6889-7}.
+#'
 #' @param g1 A \eqn{p \times p} binary adjacency matrix representing the structure of a network, where \eqn{p} is the total number of nodes present.
 #' @param g2 A \eqn{p \times p} binary adjacency matrix representing the structure of a network, where \eqn{p} is the total number of nodes present.
 #' @param a The value of the penalty parameter (scalar). Must be strictly greater than 0 and less than 2.
