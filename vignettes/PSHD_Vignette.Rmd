@@ -11,7 +11,9 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 6,
+  fig.height = 4
 )
 library(pshd)
 ```
@@ -98,7 +100,7 @@ plot(a_seq, total_edges,
      ylim = c(0, 12),
      type = 'b', 
      xlab = "Penalty (a)", 
-     ylab = "Total Edges in Final Estimate")
+     ylab = "Total Edges")
 ```
 
 
