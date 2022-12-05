@@ -19,3 +19,5 @@ I believe that my 3 functions are mostly complete and running as intended. All t
 ## Other
 
 When I originally proposed this idea for my project, I called it GSHD for Generalized Structural Hamming Distance. I changed it to PSHD (penalized instead of generalized) because I found a paper that defines GSHD as something slightly different.
+
+Some parts of this package, especially the *estimate_pshd()* function, could certainly benefit from parallelization. I had already finished the code by the time we learned about parallelization in class, and thus it is not yet implemented in parallel. However, this is definitely one of the next things I plan to work on in developing this package.
