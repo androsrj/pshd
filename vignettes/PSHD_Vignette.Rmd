@@ -13,7 +13,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(pshd)
 ```
+
+For instructions on how to install the package, please see the README file at the root of the repository.
 
 # Motivation
 
@@ -22,15 +25,6 @@ We propose the penalized structural Hamming distance function. This is an extens
 We denote these two penalties as $a$ and $b$, where $a$ is the penalty for the first graph containing an edge which the second graph does not, and $b$ is the penalty for the second graph containing an edge which the first graph does not. In the event that the two graphs have reversed edges between a particular pair of nodes, the penalty is $a+b$. In traditional structural Hamming distance, these penalties are (somewhat implicitly) understood to be $a=b=1$. In PSHD, $a$ and $b$ can take on any real values in the open interval $(0,2)$ as long as the constraint $a+b=2$ is satisfied. Because of the constraint $a+b=2$, the user need only specify a value for $a$ in the package, and $b$ is automatically taken as $2-a$.
 
 The added flexibility in the penalty values allows for sparsity tuning when choosing a point estimate for a DAG structure. As $a \longrightarrow 2$, the expected PSHD loss calculation assigns lower loss to graphs with fewer edges (i.e., biased towards more sparse structures). Conversely, as $a \longrightarrow 0$, it assigns lower loss to graphs with more edges (i.e., biased towards more dense structures). This is further demonstrated below.
-
-
-# Setup and Installation
-
-The PSHD package is not yet on CRAN, but it is available on a public GitHub repository and can therefore be installed using the *devtools* library as follows:
-```{r setup}
-devtools::install_github("https://github.com/androsrj/pshd")
-library(pshd)
-```
 
 
 # Getting Started
@@ -100,7 +94,11 @@ total_edges <- sapply(a_seq, function(x) {
   est <- estimate_pshd(samples, a = x)$est
   sum(est)
 })
-plot(a_seq, total_edges, type = 'b', xlab = "Penalty (a)", ylab = "Total Edges in Final Estimate")
+plot(a_seq, total_edges,
+     ylim = c(0, 12),
+     type = 'b', 
+     xlab = "Penalty (a)", 
+     ylab = "Total Edges in Final Estimate")
 ```
 
 
