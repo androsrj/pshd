@@ -29,13 +29,13 @@ diag(g1) <- 0
 diag(g2) <- 0
 ```
 
-The first line of code below would compute the traditional structural Hamming distance (equal penalties) betwee the two graphs. The second line computes the PSHD for $a=1.5$ and $b=0.5$.
+The first line of code below would compute the traditional structural Hamming distance (equal penalties) betwee the two graphs. The second line computes the PSHD for $a=1.5$ and $b=0.5$:
 ```{r}
 pshd(g1, g2)
 pshd(g1, g2, a = 1.5)
 ```
 
-To demonstrate the use of the *expected_pshd()* and *estimate_pshd()* functions, we will need to generate a set of samples of these DAG adjacency matrices. For simplicity, this example simply generates one maximum-density graph *g* (which contains edges at every possible location besides the diagonal) and replicates it to generate 25 samples:
+To demonstrate the use of the *expected_pshd()* and *estimate_pshd()* functions, we will need to generate a set of samples of these DAG adjacency matrices. For simplicity, this example simply generates one maximum-density graph *g* (which contains edges at every possible location besides the diagonal) and replicates it to generate 25 samples. In practice, these samples should be obtained from an MCMC method used to approximate the posterior distribution of the DAG of interest:
 ```{r}
 nSamples <- 25
 p <- 4
