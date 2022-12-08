@@ -19,9 +19,44 @@ library(pshd)
 
 ## Examples
 
-Suppose *graph1* and *graph2* are both square adjacency matrices, each representing the strucure of a particular DAG. This means that they are binary and contain all zeroes on their diagonals. Then the following could be used to compute the structural Hamming distance between them:
+Suppose *g1* and *2* are both square adjacency matrices, each representing the strucure of a particular DAG. This means that they are binary and contain all zeroes on their diagonals. These could be generated as follows (although in practice, they should come from samples of a posterior DAG distribution):
 
+```{r}
+p <- 4
+g1 <- matrix(sample(c(0, 1), p^2, replace = TRUE), nrow = p, ncol = p)
+g2 <- matrix(sample(c(0, 1), p^2, replace = TRUE), nrow = p, ncol = p)
+diag(g1) <- 0
+diag(g2) <- 0
+```
 
+The first line of code below would compute the traditional structural Hamming distance (equal penalties) betwee the two graphs. The second line computes the PSHD for $a=1.5$ and $b=0.5$.
+```{r}
+pshd(g1, g2)
+pshd(g1, g2, a = 1.5)
+```
+
+To demonstrate the use of the *expected_pshd()* and *estimate_pshd()* functions, we will need to generate a set of samples of these DAG adjacency matrices. For simplicity, this example simply generates one maximum-density graph *g* (which contains edges at every possible location besides the diagonal) and replicates it to generate 25 samples:
+```{r}
+nSamples <- 25
+p <- 4
+g <- 1 - diag(p)
+samples <- replicate(nSamples, g, simplify = FALSE)
+```
+
+Then, we can use the following to estimate the expected loss of a singular graph *g* given all the other samples (which in this case would be zero, regardless of the value of $a$):
+```{r}
+expected_pshd(g, samples)
+expected_pshd(g, samples, a = 1.5)
+```
+
+As for the *estimate_pshd()* function, we only supply the samples and the value of $a$. That is, there is no argument for a specific graph *g*. That is because this function obtains a PSHD-minimizing estimate from the samples by estimating the expected PSHD loss for each one:
+```{r}
+estimate_pshd(samples)
+estimate_pshd(samples, a = 0.1)
+estimate_pshd(samples, a = 1.9)
+```
+
+For more in-depth examples, see the vignette.
 
 ## Other
 
